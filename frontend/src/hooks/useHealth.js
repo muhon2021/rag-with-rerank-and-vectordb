@@ -29,5 +29,11 @@ export function useHealth(intervalMs = 15000) {
     ? Object.values(health.namespaces).reduce((a, b) => a + b, 0)
     : 0;
 
-  return { health, loading, backendOnline, totalVectors, refresh };
+  // Normalize the ingest ready flag from backend health
+  // Backend may return `is_ingest_ready` (snake_case) or `isIngestReady` (camelCase)
+  const isIngestReady = Boolean(
+    health?.is_ingest_ready ?? health?.isIngestReady ?? false
+  );
+
+  return { health, loading, backendOnline, totalVectors, refresh, isIngestReady };
 }
