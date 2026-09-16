@@ -11,6 +11,25 @@ Base URL (local): `http://localhost:3001`
 | POST | `/api/chat` | Run a RAG stage and return an answer (+ debug when requested) |
 | POST | `/api/ingest` | Trigger or support document ingest into Pinecone |
 
+### /api/health
+
+The health endpoint performs lightweight dependency checks (Pinecone connectivity, namespace stats and any keyword index status). A new boolean field is included in the response:
+
+- `is_ingest_ready` (boolean): true when the Pinecone index is reachable and contains indexed vectors for at least one workshop namespace (`basic`, `chunked`, `hybrid`, `rerank`). When false, the system should be considered not ready to serve chat queries (either because Pinecone is unreachable, the index is missing, or no vectors have been indexed).
+
+Example response (conceptual):
+
+```json
+{
+  "status": "ready",
+  "pinecone": true,
+  "namespaces": { "basic": 120, "chunked": 240, "hybrid": 180, "rerank": 180 },
+  "keywordIndex": "ready",
+  "is_ingest_ready": true,
+  "message": "System ready"
+}
+```
+
 ## Chat (typical)
 
 Request body (conceptual):
