@@ -1169,3 +1169,74 @@ a {
 .compare-view-finale .compare-grid {
   flex: 1;
 }
+
+/* --- Additions for Blog link and Blog page styling --- */
+.status-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.status-link:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+.blog-wrap {
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.blog-header {
+  margin-bottom: 1rem;
+}
+
+.blog-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.blog-title h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f3f4f6;
+}
+
+.blog-icon {
+  color: var(--accent-hover);
+}
+
+.blog-subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.blog-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.blog-post {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.875rem 1rem;
+}
+
+.blog-post-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #eef0ff;
+  margin-bottom: 0.35rem;
+}
+
+.blog-post-excerpt {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.blog-post-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
