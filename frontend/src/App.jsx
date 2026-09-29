@@ -11,6 +11,7 @@ import RoleEditPage from './components/RoleEditPage.jsx';
 import MembersListPage from './components/MembersListPage.jsx';
 import MemberCreatePage from './components/MemberCreatePage.jsx';
 import MemberEditPage from './components/MemberEditPage.jsx';
+import DashboardOverviewPage from './components/DashboardOverviewPage.jsx';
 
 function usePathname() {
   const [path, setPath] = useState(window.location.pathname);
@@ -32,7 +33,7 @@ function navigate(to) {
 function renderDashboardRoute(pathname, nav) {
   // Routing logic for /dashboard and its children
   if (pathname === '/dashboard' || pathname === '/dashboard/') {
-    return <DashboardPage />;
+    return <DashboardOverviewPage navigate={nav} />;
   }
 
   if (pathname === '/dashboard/roles') {
@@ -46,7 +47,7 @@ function renderDashboardRoute(pathname, nav) {
   if (roleEditMatch) {
     const id = roleEditMatch[1];
     return <RoleEditPage id={id} navigate={nav} />;
-  }
+    }
 
   if (pathname === '/dashboard/members') {
     return <MembersListPage navigate={nav} />;

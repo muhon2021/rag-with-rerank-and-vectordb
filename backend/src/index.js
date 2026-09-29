@@ -5,6 +5,7 @@ import { errorHandler, requestTimeout } from './middleware/errorHandler.js';
 import chatRoutes from './routes/chat.js';
 import healthRoutes from './routes/health.js';
 import ingestRoutes from './routes/ingest.js';
+import adminRoutes from './routes/admin.js';
 import { testConnection, ensureIndex } from './services/pineconeService.js';
 import { loadKeywordIndex } from './services/keywordIndex.js';
 import OpenAI from 'openai';
@@ -23,6 +24,7 @@ app.use('/api', requestTimeout(120000));
 app.use('/api/health', healthRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/ingest', ingestRoutes);
+app.use('/api/admin', adminRoutes);
 
 app.get('/api', (_req, res) => {
   res.json({ name: 'RAG Learning Lab API', version: '1.0.0' });

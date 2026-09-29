@@ -66,3 +66,18 @@ export function compareAll(message) {
     body: JSON.stringify({ message }),
   });
 }
+
+// Admin Dashboard API
+export function fetchAdminStats() {
+  return request('/api/admin/stats');
+}
+
+export function fetchAdminActivity(limit = 20) {
+  const q = typeof limit === 'number' ? `?limit=${limit}` : '';
+  return request(`/api/admin/activity${q}`);
+}
+
+// Optional quick actions
+export function runIngest() {
+  return request('/api/ingest', { method: 'POST' });
+}
