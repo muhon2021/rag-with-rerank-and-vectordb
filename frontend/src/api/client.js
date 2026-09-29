@@ -66,3 +66,45 @@ export function compareAll(message) {
     body: JSON.stringify({ message }),
   });
 }
+
+export function getRoles() {
+  return Promise.resolve([
+    { id: 1, name: 'Admin', type: 'system', permissions: 'read,write' },
+    { id: 2, name: 'User', type: 'user', permissions: 'read' },
+  ]);
+}
+
+export function createRole(data) {
+  console.log('Creating role:', data);
+  return Promise.resolve();
+}
+
+export function getRoleById(id) {
+  return Promise.resolve({ id, name: 'Admin', type: 'system', permissions: 'read,write' });
+}
+
+export function updateRole(id, data) {
+  console.log('Updating role:', id, data);
+  return Promise.resolve();
+}
+
+export function getMembers() {
+  return Promise.resolve([
+    { id: 1, name: 'John Doe', email: 'john@example.com', roles: 'Admin' },
+    { id: 2, name: 'Jane Smith', email: 'jane@example.com', roles: 'User' },
+  ]);
+}
+
+export function createMember(data) {
+  console.log('Creating member:', data);
+  return Promise.resolve();
+}
+
+export function getMemberById(id) {
+  return Promise.resolve({ id, name: 'John Doe', email: 'john@example.com', roles: 'Admin' });
+}
+
+export function updateMember(id, data) {
+  console.log('Updating member:', id, data);
+  return Promise.resolve();
+}
