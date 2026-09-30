@@ -1,7 +1,34 @@
+import { useEffect } from 'react';
 import { Activity, Database, Server } from 'lucide-react';
 
 export default function StatusBar({ backendOnline, health, totalVectors }) {
   const status = health?.status || 'unknown';
+
+  // Minimal, safe runtime patch: replace a standalone 'Welcome' with 'Hello' on the '/' route only.
+  // This avoids layout/styling changes and touches no other UI components.
+  useEffect(() => {
+    if (typeof window === 'undefined') return; // SSR/defensive
+    if (window.location && window.location.pathname !== '/') return; // Only on home route
+    try {
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+      const targets = [];
+      let node = walker.currentNode;
+      while (node) {
+        const text = node.nodeValue;
+        if (text && text.trim() === 'Welcome') {
+          targets.push(node);
+        }
+        node = walker.nextNode();
+      }
+      targets.forEach((n) => {
+        // Replace exact standalone 'Welcome' to 'Hello'
+        n.nodeValue = 'Hello';
+      });
+    } catch (err) {
+      // Do not disrupt UI; log for diagnostics only
+      console.error('Greeting text replacement failed:', err);
+    }
+  }, []);
 
   return (
     <footer className="status-bar">
