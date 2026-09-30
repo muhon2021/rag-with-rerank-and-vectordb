@@ -8,6 +8,8 @@ This folder tells AI coding tools (and DCT Spec Engine / SCCR) how to work in th
 |------|---------|
 | `context-priority.md` | Which files matter most when generating or reviewing code |
 | `rules/` | Project conventions AI must follow |
+| `../docs/playbook/` | AI development rules and merge gates |
+| `../docs/skills/` | Agent skills: synthesize, test, profile, security, review |
 
 ## Project snapshot
 

@@ -109,7 +109,11 @@ Optional Set B (use if you want an “anti-hallucination” moment):
 data/           # Sample company KB (markdown)
 backend/        # Express API + RAG pipelines
 frontend/       # React UI
+architecture/   # Architecture overview and ADRs
+docs/           # API, storage, features, SOPs, playbook, and agent skills
 ```
+
+AI agents working on this repo: start with [`docs/playbook/README.md`](docs/playbook/README.md) and [`docs/skills/README.md`](docs/skills/README.md).
 
 ## License
 

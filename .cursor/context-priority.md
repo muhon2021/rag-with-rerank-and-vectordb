@@ -8,7 +8,8 @@ When generating or reviewing code, prefer sources in this order.
 2. `.cursor/rules/` — coding conventions
 3. `architecture/` — system design and ADRs
 4. `docs/features/` and `docs/api/` — behavior and endpoints
-5. Existing code next to the change (same folder / pipeline)
+5. `docs/playbook/` — AI development rules and merge gates; `docs/skills/` — procedures for synthesis, tests, performance, security, review
+6. Existing code next to the change (same folder / pipeline)
 
 ## 2. Core code paths
 
