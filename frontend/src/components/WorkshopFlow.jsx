@@ -31,6 +31,9 @@ export default function WorkshopFlow({
   const showPipelineOverview = isStage || isCompare;
   const nextLabel = getNextStepLabel(stepIndex);
 
+  // Display requirement: change the specific greeting "Welcome" to "Hi There" on the root workshop flow header
+  const displayedTitle = step?.title === 'Welcome' ? 'Hi There' : step?.title;
+
   useEffect(() => {
     setShowDetails(false);
   }, [stepIndex]);
@@ -53,7 +56,7 @@ export default function WorkshopFlow({
         <div className="workshop-top-main">
           <span className="workshop-brand-title">RAG Learning Lab</span>
           <span className="workshop-stage-line">
-            <strong className="workshop-stage-name">{step.title}</strong>
+            <strong className="workshop-stage-name">{displayedTitle}</strong>
             {step.description ? (
               <span className="workshop-stage-desc">{step.description}</span>
             ) : null}
