@@ -72,6 +72,56 @@ export default function App() {
 
   const isDashboard = useMemo(() => pathname.startsWith('/dashboard'), [pathname]);
 
+  // Replace the specific "Welcome" greeting on the root route with "Hi There" in the header/top-right area
+  // We scope this to the root path and to elements in a header-like region or containers that also show
+  // the "RAG Learning Lab" label to avoid unintended replacements elsewhere.
+  useEffect(() => {
+    if (isDashboard) return; // do not run on /dashboard routes
+    if (!(pathname === '/' || pathname === '')) return; // only on root route
+
+    let disconnected = false;
+
+    const tryReplace = () => {
+      try {
+        const nodes = Array.from(document.querySelectorAll('body *'));
+        for (const el of nodes) {
+          if (!el) continue;
+          // only consider simple text nodes to avoid replacing container text
+          if (el.childNodes && el.childNodes.length === 1 && typeof el.textContent === 'string' && el.textContent.trim() === 'Welcome') {
+            // header-like containers or any container that also includes the RAG label
+            const headerish = el.closest('header, .header, .topbar, .top-bar, .app-header, .workshop-header');
+            const container = el.closest('*');
+            const hasBrand = container && typeof container.innerText === 'string' && container.innerText.includes('RAG Learning Lab');
+            if (headerish || hasBrand) {
+              el.textContent = 'Hi There';
+              return true;
+            }
+          }
+        }
+      } catch (_) {
+        // no-op
+      }
+      return false;
+    };
+
+    // Attempt immediately in case the node is already present
+    if (tryReplace()) return;
+
+    // Observe DOM mutations to catch async renders
+    const mo = new MutationObserver(() => {
+      if (tryReplace() && !disconnected) {
+        mo.disconnect();
+        disconnected = true;
+      }
+    });
+
+    mo.observe(document.body, { childList: true, subtree: true, characterData: true });
+
+    return () => {
+      if (!disconnected) mo.disconnect();
+    };
+  }, [pathname, isDashboard]);
+
   if (isDashboard) {
     return (
       <DashboardLayout currentPath={pathname} navigate={navigate}>
