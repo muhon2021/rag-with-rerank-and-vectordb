@@ -66,3 +66,11 @@ export function compareAll(message) {
     body: JSON.stringify({ message }),
   });
 }
+
+// Payments — create a PaymentIntent for botox items
+export function createBotoxPaymentIntent({ amount, currency = 'USD', description, method = 'wallet', savePaymentMethod = false, customerId }) {
+  return request('/api/payments/create-intent', {
+    method: 'POST',
+    body: JSON.stringify({ amount, currency, description, method, savePaymentMethod, customerId }),
+  });
+}
