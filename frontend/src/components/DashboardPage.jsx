@@ -22,7 +22,7 @@ export default function DashboardPage() {
   return (
     <div>
       <h1 style={{ marginTop: 0 }}>Overview</h1>
-      <p>Welcome to the admin dashboard. Use the sidebar to navigate.</p>
+      <p>Hello to the admin dashboard. Use the sidebar to navigate.</p>
 
       {loading ? (
         <div>Loading summary…</div>
