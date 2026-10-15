@@ -35,3 +35,11 @@ Policy documents used for retrieval demos:
 - `data/engineering-guidelines.md`
 
 Curated questions: `demo-questions.md`.
+
+## MCQ Quiz
+
+Generate 3 multiple-choice questions from the selected RAG stage's corpus and get instant correctness feedback.
+
+- UI: `frontend/src/components/MCQScreen.jsx`, `MCQDisplay.jsx`
+- API: `backend/src/routes/mcq.js`
+- Route: Frontend at `/mcq-quiz` (link available from the Dashboard sidebar)

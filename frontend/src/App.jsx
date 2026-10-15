@@ -11,6 +11,7 @@ import RoleEditPage from './components/RoleEditPage.jsx';
 import MembersListPage from './components/MembersListPage.jsx';
 import MemberCreatePage from './components/MemberCreatePage.jsx';
 import MemberEditPage from './components/MemberEditPage.jsx';
+import MCQScreen from './components/MCQScreen.jsx';
 
 function usePathname() {
   const [path, setPath] = useState(window.location.pathname);
@@ -69,6 +70,11 @@ export default function App() {
   const { health, backendOnline, totalVectors } = useHealth();
   const indexEmpty = totalVectors === 0;
   const pathname = usePathname();
+
+  // Top-level route for MCQ quiz
+  if (pathname === '/mcq-quiz' || pathname === '/mcq-quiz/') {
+    return <MCQScreen />;
+  }
 
   const isDashboard = useMemo(() => pathname.startsWith('/dashboard'), [pathname]);
 
