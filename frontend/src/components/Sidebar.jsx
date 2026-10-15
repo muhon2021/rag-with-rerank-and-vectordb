@@ -64,6 +64,7 @@ export default function Sidebar({ currentPath, navigate }) {
       <Item to="/dashboard/members">Member Management</Item>
 
       <SectionTitle>Other</SectionTitle>
+      <Item to="/mcq-quiz">MCQ Quiz</Item>
       <Item to="/dashboard#settings">Settings (placeholder)</Item>
     </aside>
   );

@@ -66,3 +66,10 @@ export function compareAll(message) {
     body: JSON.stringify({ message }),
   });
 }
+
+export function generateMcqs(stage) {
+  return request('/api/mcq/generate', {
+    method: 'POST',
+    body: JSON.stringify({ stage }),
+  });
+}

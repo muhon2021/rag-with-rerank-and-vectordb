@@ -8,6 +8,7 @@ import ingestRoutes from './routes/ingest.js';
 import { testConnection, ensureIndex } from './services/pineconeService.js';
 import { loadKeywordIndex } from './services/keywordIndex.js';
 import OpenAI from 'openai';
+import mcqRoutes from './routes/mcq.js';
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use('/api', requestTimeout(120000));
 app.use('/api/health', healthRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/ingest', ingestRoutes);
+app.use('/api/mcq', mcqRoutes);
 
 app.get('/api', (_req, res) => {
   res.json({ name: 'RAG Learning Lab API', version: '1.0.0' });
