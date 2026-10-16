@@ -72,6 +72,79 @@ export default function App() {
 
   const isDashboard = useMemo(() => pathname.startsWith('/dashboard'), [pathname]);
 
+  // Replace the specific 'Welcome' text with 'Hello' on the root ('/') route only,
+  // targeting the header area that includes 'RAG Learning Lab'. This avoids changing
+  // other occurrences and keeps styling intact by modifying text nodes in-place.
+  useEffect(() => {
+    if (isDashboard) return;
+
+    let observer;
+
+    const replaceWelcomeNearRagHeader = () => {
+      const all = Array.from(document.querySelectorAll('body *'));
+      let changed = false;
+
+      for (const el of all) {
+        if (!el || !el.textContent) continue;
+        // Look for a container that mentions 'RAG Learning Lab'
+        if (el.textContent.includes('RAG Learning Lab')) {
+          const container = el.parentElement || el;
+          const scanTargets = [container, ...Array.from(container.querySelectorAll('*'))];
+
+          for (const t of scanTargets) {
+            if (!t) continue;
+            // Prefer exact text-node replacement to preserve styles/structure
+            if (t.childNodes && t.childNodes.length) {
+              t.childNodes.forEach((node) => {
+                if (node.nodeType === Node.TEXT_NODE) {
+                  const txt = node.textContent;
+                  if (txt && /\bWelcome\b/.test(txt)) {
+                    node.textContent = txt.replace(/\bWelcome\b/g, 'Hello');
+                    changed = true;
+                  }
+                }
+              });
+            }
+            // Also handle simple leaf elements whose innerText is exactly 'Welcome'
+            if (t.children && t.children.length === 0 && typeof t.innerText === 'string') {
+              if (t.innerText.trim() === 'Welcome') {
+                t.textContent = 'Hello';
+                changed = true;
+              }
+            }
+          }
+
+          if (changed) break; // stop after first successful replacement near header
+        }
+      }
+
+      return changed;
+    };
+
+    // Run immediately
+    const initialChanged = replaceWelcomeNearRagHeader();
+
+    // Observe for late-rendered updates (disconnect after we succeed)
+    observer = new MutationObserver(() => {
+      if (replaceWelcomeNearRagHeader()) {
+        if (observer) observer.disconnect();
+      }
+    });
+
+    // Only observe if not already changed, to reduce overhead
+    if (!initialChanged) {
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+        characterData: true,
+      });
+    }
+
+    return () => {
+      if (observer) observer.disconnect();
+    };
+  }, [isDashboard, pathname]);
+
   if (isDashboard) {
     return (
       <DashboardLayout currentPath={pathname} navigate={navigate}>
