@@ -1,6 +1,6 @@
 import { Activity, Database, Server } from 'lucide-react';
 
-export default function StatusBar({ backendOnline, health, totalVectors }) {
+export default function StatusBar({ backendOnline, health, totalVectors, greetingText = 'Hello' }) {
   const status = health?.status || 'unknown';
 
   return (
@@ -18,6 +18,9 @@ export default function StatusBar({ backendOnline, health, totalVectors }) {
       <div className="status-item">
         <Activity size={13} className="status-icon" />
         Status: {status}
+      </div>
+      <div className="status-item status-greeting" aria-label="Greeting">
+        {greetingText}
       </div>
       {health?.namespaces && (
         <div className="status-item">
