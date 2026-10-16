@@ -160,4 +160,32 @@ export async function testConnection() {
   return true;
 }
 
+/**
+ * isIndexReadyForChat
+ * Returns a boolean indicating whether the Pinecone index is reachable and
+ * contains indexed vectors for at least one of the workshop namespaces.
+ *
+ * Behaviour and constraints:
+ * - Must be fast and safe for use in health checks
+ * - Returns `false` on any error or if no vectors are present
+ */
+export async function isIndexReadyForChat() {
+  try {
+    // Ensure Pinecone service is reachable
+    await testConnection();
+
+    // Get index-level namespace counts (fast server-side summary)
+    const stats = await describeIndexStats();
+
+    // Sum records across the known namespaces used by the app
+    const totalVectors = Object.values(stats).reduce((acc, v) => acc + (v || 0), 0);
+
+    // If there are indexed vectors in any namespace, it's ready for chat
+    return totalVectors > 0;
+  } catch (err) {
+    // Any error during checks -> treat as not ready
+    return false;
+  }
+}
+
 export { NAMESPACES };
