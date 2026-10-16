@@ -66,7 +66,7 @@ function renderDashboardRoute(pathname, nav) {
 }
 
 export default function App() {
-  const { health, backendOnline, totalVectors } = useHealth();
+  const { health, backendOnline, totalVectors, isIngestReady } = useHealth();
   const indexEmpty = totalVectors === 0;
   const pathname = usePathname();
 
@@ -86,6 +86,7 @@ export default function App() {
       backendOnline={backendOnline}
       health={health}
       totalVectors={totalVectors}
+      ingestReady={isIngestReady}
     />
   );
 }
