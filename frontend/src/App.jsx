@@ -12,6 +12,10 @@ import MembersListPage from './components/MembersListPage.jsx';
 import MemberCreatePage from './components/MemberCreatePage.jsx';
 import MemberEditPage from './components/MemberEditPage.jsx';
 
+// New imports for spa massage catalog and cart
+import AllProductsPage from './pages/AllProductsPage.jsx';
+import CartPage from './pages/CartPage.jsx';
+
 function usePathname() {
   const [path, setPath] = useState(window.location.pathname);
   useEffect(() => {
@@ -78,6 +82,15 @@ export default function App() {
         {renderDashboardRoute(pathname, navigate)}
       </DashboardLayout>
     );
+  }
+
+  // New routing logic for spa massage catalog and cart
+  if (pathname === '/all-product') {
+    return <AllProductsPage />;
+  }
+
+  if (pathname === '/curtup') {
+    return <CartPage />;
   }
 
   return (

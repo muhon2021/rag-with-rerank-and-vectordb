@@ -1,0 +1,74 @@
+[
+  {
+    "id": "spa-001",
+    "name": "Swedish Massage",
+    "description": "A gentle, relaxing massage that uses long strokes, kneading, deep circular movements, vibration, and tapping to help you feel energized.",
+    "price": 85.00
+  },
+  {
+    "id": "spa-002",
+    "name": "Deep Tissue Massage",
+    "description": "Focuses on realigning deeper layers of muscles and connective tissue. It is especially helpful for chronically tense and contracted areas.",
+    "price": 100.00
+  },
+  {
+    "id": "spa-003",
+    "name": "Hot Stone Massage",
+    "description": "Heated, smooth stones are placed on specific points on your body to warm and relax muscles, allowing for deeper pressure during the massage.",
+    "price": 110.00
+  },
+  {
+    "id": "spa-004",
+    "name": "Aromatherapy Massage",
+    "description": "Uses essential oils to enhance the therapeutic benefits of massage. Each oil has unique properties to relax, energize, or uplift.",
+    "price": 95.00
+  },
+  {
+    "id": "spa-005",
+    "name": "Reflexology",
+    "description": "A type of massage that involves applying different amounts of pressure to the feet, hands, and ears.",
+    "price": 75.00
+  },
+  {
+    "id": "spa-006",
+    "name": "Shiatsu Massage",
+    "description": "A form of Japanese bodywork based on concepts in traditional Chinese medicine such as the use of chi meridians.",
+    "price": 105.00
+  },
+  {
+    "id": "spa-007",
+    "name": "Thai Massage",
+    "description": "Combines acupressure, Indian Ayurvedic principles, and assisted yoga postures.",
+    "price": 120.00
+  },
+  {
+    "id": "spa-008",
+    "name": "Sports Massage",
+    "description": "Designed to help athletes prepare their bodies for optimal performance, recover after a big event, or function well during training.",
+    "price": 90.00
+  },
+  {
+    "id": "spa-009",
+    "name": "Prenatal Massage",
+    "description": "A gentle massage that focuses on the special needs of the mother-to-be as her body goes through the dramatic changes of pregnancy.",
+    "price": 100.00
+  },
+  {
+    "id": "spa-010",
+    "name": "Couples Massage",
+    "description": "A massage for two people, typically in the same room, with two therapists.",
+    "price": 180.00
+  },
+  {
+    "id": "spa-011",
+    "name": "Chair Massage",
+    "description": "A short massage, usually lasting 10 to 30 minutes, that focuses on your back, shoulders, and neck.",
+    "price": 50.00
+  },
+  {
+    "id": "spa-012",
+    "name": "Lymphatic Drainage Massage",
+    "description": "A gentle massage that encourages the movement of lymph fluids around the body.",
+    "price": 95.00
+  }
+]
